@@ -13,7 +13,7 @@ import {
 const About = () => {
   return (
 
-    <div id='about' className=' flex flex-col lg:flex-row w-full m-8 '>
+    <div id='about' className=' flex flex-col md:flex-row w-full m-8 '>
       <div className=' flex md:w-1/2 w-full  items-center justify-center'>
         <div className=' flex flex-col gap-4 w-[500px] items-center text-center lg:items-start lg:text-start'>
           <h1 className=' text-4xl lg:text-6xl font-bold'>
@@ -28,7 +28,7 @@ const About = () => {
             <DialogTrigger className='flex justify-center items-center py-3 text-lg font-semibold  text-white cursor-pointer shadow-md  bg-[#282623] w-52'>Contact Us</DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                <DialogTitle>Send Us A Mail Or Contact Us On WhatsApp On 09027506368</DialogTitle>
+                <DialogTitle>Send Us A Mail Or Contact Us On WhatsApp On 08102729491</DialogTitle>
                 <DialogDescription className='p-4 w-full h-full text-center items-center justify-center mt-3'>
                     <form
                     target="_blank"
@@ -81,43 +81,3 @@ const About = () => {
 }
 
 export default About
-
-
-
-{/* <div className=" p-4 w-full h-full text-center items-center justify-center mt-3">
-          <form
-            target="_blank"
-            action="https://formsubmit.co/e3bd1de53a7c6505e78e7062dfd2a33e"
-            method="POST"
-            className="w-full h-full flex flex-col justify-center items-center"
-          >
-            <div className="w-full md:w-[70%] h-full flex flex-col gap-4 text-black">
-              <input
-                type="text"
-                name="name"
-                className="w-full h-full p-4 rounded-md border border-black"
-                placeholder="Your Name"
-                required
-              />
-              <input
-                type="email"
-                name="email"
-                className="w-full h-full p-4 rounded-md border border-black"
-                placeholder="Your Email"
-                required
-              />
-              <textarea
-                placeholder="What Spark Your Interest To Join Us?"
-                className="w-full h-full p-4 rounded-md border border-black"
-                name="message"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="gradient2 p-2 rounded-md mt-4 text-white hover:bg-black"
-            >
-              Submit Form
-            </button>
-          </form>
-        </div> */}

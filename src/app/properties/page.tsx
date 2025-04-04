@@ -1,6 +1,6 @@
 'use client';
 
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, Query, Storage } from "appwrite";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -10,20 +10,22 @@ type Property = {
   $id: string;
   title: string;
   description: string;
-  price: number;
+  price: string;
   imageUrl?: string;
 };
 
 const PROJECT_ID = "67ef29450012c633b10f";
 const DATABASE_ID = "67ef2ee1001690561271";
-const COLLECTION_ID = "67efc1de0036f6f1cedf";
-const ITEMS_PER_PAGE = 6; // Adjust items per page as needed
+const COLLECTION_ID = "67efe6f4002b4ed5fd15";
+const BUCKET_ID = "67efc1de0036f6f1cedf";
+const ITEMS_PER_PAGE = 6;
 
 const client = new Client()
   .setEndpoint("https://cloud.appwrite.io/v1")
   .setProject(PROJECT_ID);
 
 const databases = new Databases(client);
+const storage = new Storage(client);
 
 export default function PropertiesPage() {
   const [properties, setProperties] = useState<Property[]>([]);
@@ -38,14 +40,19 @@ export default function PropertiesPage() {
           Query.offset((page - 1) * ITEMS_PER_PAGE),
         ]);
 
-        setProperties(response.documents.map((document) => ({
-          $id: document.$id,
-          title: document.title,
-          description: document.description,
-          price: document.price,
-          imageUrl: document.imageUrl,
-        })));
+        const mapped = await Promise.all(
+          response.documents.map(async (document) => ({
+            $id: document.$id,
+            title: document.title,
+            description: document.description,
+            price: document.price,
+            imageUrl: document.imageUrl
+              ? storage.getFileView(BUCKET_ID, document.imageUrl)
+              : undefined,
+          }))
+        );
 
+        setProperties(mapped);
         setTotalPages(Math.ceil(response.total / ITEMS_PER_PAGE));
       } catch (error) {
         console.error("Error fetching properties:", error);
@@ -72,8 +79,8 @@ export default function PropertiesPage() {
                 <Image
                   src={property.imageUrl}
                   alt={property.title}
-                  width={500} 
-                  height={300} 
+                  width={500}
+                  height={300}
                   className="w-full h-48 object-cover"
                 />
               ) : (
@@ -84,7 +91,7 @@ export default function PropertiesPage() {
               <div className="p-4">
                 <h2 className="text-xl font-semibold mb-2">{property.title}</h2>
                 <p className="text-sm text-gray-600 mb-4">{property.description}</p>
-                <p className="text-lg font-bold text-blue-600">${property.price.toLocaleString()}</p>
+                <p className="text-lg font-bold text-blue-600">N{property.price}</p>
               </div>
             </div>
           ))}
@@ -96,7 +103,9 @@ export default function PropertiesPage() {
         <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
           Previous
         </Button>
-        <span className="text-lg font-semibold">Page {page} of {totalPages}</span>
+        <span className="text-lg font-semibold">
+          Page {page} of {totalPages}
+        </span>
         <Button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
           Next
         </Button>
