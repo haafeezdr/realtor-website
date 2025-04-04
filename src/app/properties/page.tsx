@@ -3,6 +3,7 @@
 import { Client, Databases, Query } from "appwrite";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 // Define Property Type
 type Property = {
@@ -68,7 +69,7 @@ export default function PropertiesPage() {
               className="border rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow"
             >
               {property.imageUrl ? (
-                <img
+                <Image
                   src={property.imageUrl}
                   alt={property.title}
                   className="w-full h-48 object-cover"
