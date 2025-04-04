@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 const HeroSection = () => {
   return (
     <div
+    id="home"
       className="relative h-screen w-full flex items-center justify-center text-center bg-cover bg-center"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
@@ -14,7 +15,7 @@ const HeroSection = () => {
       {/* Hero Content */}
       <div className="relative z-10 text-white px-6">
         <h1 className="text-4xl md:text-6xl font-bold">
-          Find Your Dream Home
+          Invest In The Future, Find Your Dream Home.
         </h1>
 
         <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
@@ -22,7 +23,7 @@ const HeroSection = () => {
         </p>
 
         <div className="mt-6">
-          <Button className="px-6 py-3 text-lg bg-[#282623] hover:bg-[#3a3734] transition-all shadow-lg">
+          <Button className="px-6 py-4 text-lg bg-[#282623] hover:bg-[#3a3734] transition-all shadow-lg">
             <Link href="/properties">Browse Listings</Link>
           </Button>
         </div>

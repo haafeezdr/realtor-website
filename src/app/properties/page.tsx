@@ -15,7 +15,7 @@ type Property = {
 
 const PROJECT_ID = "67ef29450012c633b10f";
 const DATABASE_ID = "67ef2ee1001690561271";
-const COLLECTION_ID = "67ef2f0e0019008325bb";
+const COLLECTION_ID = "67efc1de0036f6f1cedf";
 const ITEMS_PER_PAGE = 6; // Adjust items per page as needed
 
 const client = new Client()
@@ -44,7 +44,7 @@ export default function PropertiesPage() {
           price: document.price,
           imageUrl: document.imageUrl,
         })));
-        
+
         setTotalPages(Math.ceil(response.total / ITEMS_PER_PAGE));
       } catch (error) {
         console.error("Error fetching properties:", error);
@@ -55,7 +55,7 @@ export default function PropertiesPage() {
   }, [page]);
 
   return (
-    <div className="container mx-auto px-4 py-10">
+    <div className="w-full h-full mt-20">
       <h1 className="text-4xl font-bold mb-6 text-center">Available Properties</h1>
 
       {properties.length === 0 ? (
