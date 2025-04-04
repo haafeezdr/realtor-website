@@ -4,6 +4,9 @@ import { Client, Databases, Storage, ID, Query } from "appwrite";
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+
 
 // Appwrite Config
 const PROJECT_ID = "67ef29450012c633b10f";
@@ -15,8 +18,18 @@ const client = new Client().setEndpoint("https://cloud.appwrite.io/v1").setProje
 const databases = new Databases(client);
 const storage = new Storage(client);
 
+
+type Property = {
+    $id: string;
+    title: string;
+    description: string;
+    price: number;
+    imageUrl: string;
+  };
+
 export default function ManagePropertiesPage() {
-  const [properties, setProperties] = useState<any[]>([]);
+      
+      const [properties, setProperties] = useState<Property[]>([]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [propertyData, setPropertyData] = useState({
     id: "",
@@ -32,7 +45,13 @@ export default function ManagePropertiesPage() {
     async function fetchProperties() {
       try {
         const response = await databases.listDocuments(DATABASE_ID, COLLECTION_ID, [Query.limit(100)]);
-        setProperties(response.documents);
+        setProperties(response.documents.map((document) => ({
+            $id: document.$id,
+            title: document.title || '',
+            description: document.description || '',
+            price: document.price || 0,
+            imageUrl: document.imageUrl || '',
+          })));
       } catch (error) {
         console.error("Error fetching properties:", error);
       }
@@ -112,7 +131,7 @@ export default function ManagePropertiesPage() {
   };
 
   // Populate Form for Editing
-  const handleEdit = (property: any) => {
+  const handleEdit = (property: Property) => {
     setPropertyData({
       id: property.$id,
       title: property.title,
@@ -141,7 +160,8 @@ export default function ManagePropertiesPage() {
           properties.map((property) => (
             <div key={property.$id} className="border rounded-lg p-4 shadow-md">
               {property.imageUrl ? (
-                <img src={`https://cloud.appwrite.io/v1/storage/buckets/${BUCKET_ID}/files/${property.imageUrl}/view`} alt={property.title} className="w-full h-48 object-cover mb-2" />
+                <Image src={`https://cloud.appwrite.io/v1/storage/buckets/${BUCKET_ID}/files/${property.imageUrl}/view`} alt={property.title}  width={500} 
+                height={300}  className="w-full h-48 object-cover mb-2" />
               ) : (
                 <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">No Image</div>
               )}
