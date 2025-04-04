@@ -1,7 +1,8 @@
-// app/properties/page.tsx
+'use client';
 
 import { Client, Databases, Query } from "appwrite";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 // Define Property Type
 type Property = {
@@ -12,38 +13,46 @@ type Property = {
   imageUrl?: string;
 };
 
-// Function to Fetch Properties at Build Time (Server Component)
-async function fetchProperties(): Promise<Property[]> {
-  const client = new Client()
-    .setEndpoint("https://cloud.appwrite.io/v1") // Update if self-hosted
-    .setProject("67ef29450012c633b10f"); // Replace with your actual project ID
+const PROJECT_ID = "67ef29450012c633b10f";
+const DATABASE_ID = "67ef2ee1001690561271";
+const COLLECTION_ID = "67ef2f0e0019008325bb";
+const ITEMS_PER_PAGE = 6; // Adjust items per page as needed
 
-  const databases = new Databases(client);
+const client = new Client()
+  .setEndpoint("https://cloud.appwrite.io/v1")
+  .setProject(PROJECT_ID);
 
-  try {
-    const response = await databases.listDocuments(
-      "YOUR_DATABASE_ID",
-      "YOUR_COLLECTION_ID",
-      [Query.limit(20)]
-    );
+const databases = new Databases(client);
 
-    return response.documents.map((document) => ({
-      $id: document.$id,
-      title: document.title, 
-      description: document.description, 
-      price: document.price, 
-      imageUrl: document.imageUrl,
-    })) as Property[];
+export default function PropertiesPage() {
+  const [properties, setProperties] = useState<Property[]>([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
-  } catch (error) {
-    console.error("Error fetching properties:", error);
-    return [];
-  }
-}
+  useEffect(() => {
+    async function fetchProperties() {
+      try {
+        const response = await databases.listDocuments(DATABASE_ID, COLLECTION_ID, [
+          Query.limit(ITEMS_PER_PAGE),
+          Query.offset((page - 1) * ITEMS_PER_PAGE),
+        ]);
 
-// **Server Component**: No need for `getStaticProps`
-export default async function PropertiesPage() {
-  const properties = await fetchProperties();
+        setProperties(response.documents.map((document) => ({
+          $id: document.$id,
+          title: document.title,
+          description: document.description,
+          price: document.price,
+          imageUrl: document.imageUrl,
+        })));
+        
+        setTotalPages(Math.ceil(response.total / ITEMS_PER_PAGE));
+      } catch (error) {
+        console.error("Error fetching properties:", error);
+      }
+    }
+
+    fetchProperties();
+  }, [page]);
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -78,6 +87,17 @@ export default async function PropertiesPage() {
           ))}
         </div>
       )}
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center mt-8 space-x-4">
+        <Button disabled={page === 1} onClick={() => setPage(page - 1)}>
+          Previous
+        </Button>
+        <span className="text-lg font-semibold">Page {page} of {totalPages}</span>
+        <Button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+          Next
+        </Button>
+      </div>
     </div>
   );
 }
