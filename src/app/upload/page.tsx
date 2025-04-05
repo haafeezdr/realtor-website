@@ -156,18 +156,20 @@ export default function ManagePropertiesPage() {
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">Manage Properties</h2>
       <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {properties.length === 0 ? (
           <p className="text-gray-500">No properties added yet.</p>
         ) : (
+          // <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           properties.map((property) => (
-            <div key={property.$id} className="border rounded-lg p-4 shadow-md">
+            <div key={property.$id} className="border  rounded-lg p-4 shadow-md">
               {property.imageUrl ? (
                 <Image
                   src={property.imageUrl}
                   alt={property.title}
                   width={500}
                   height={300}
-                  className="w-full h-48 object-cover mb-2"
+                  className="w-full h-60 mb-2"
                 />
               ) : (
                 <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">
@@ -185,6 +187,7 @@ export default function ManagePropertiesPage() {
             </div>
           ))
         )}
+        </div>
       </div>
     </div>
   );
