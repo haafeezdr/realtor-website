@@ -26,7 +26,7 @@ const About = () => {
           </p>
         <Dialog>
             <DialogTrigger className='flex justify-center items-center py-3 text-lg font-semibold  text-white cursor-pointer shadow-md  bg-[#282623] w-52'>Contact Us</DialogTrigger>
-            <DialogContent>
+            <DialogContent className=' bg-[#282623]'>
                 <DialogHeader>
                 <DialogTitle>Send Us A Mail Or Contact Us On WhatsApp On 08102729491</DialogTitle>
                 <DialogDescription className='p-4 w-full h-full text-center items-center justify-center mt-3'>

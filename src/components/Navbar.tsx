@@ -13,7 +13,7 @@ const Navbar = () => {
             </Link>
             <div className='flex items-center gap-4 md:text-2xl'>
                 <Link href={'#about'} >About</Link>
-                <Link href={'/properties'} >Properties</Link>
+                <Link href={'#properties'} >Properties</Link>
                 <Link href={'#about'} >Contact</Link>
             </div>
         </div>

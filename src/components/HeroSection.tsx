@@ -24,7 +24,7 @@ const HeroSection = () => {
 
         <div className="mt-6">
           <Button className="px-6 py-4 text-lg bg-[#282623] hover:bg-[#3a3734] transition-all shadow-lg">
-            <Link href="/properties">Browse Listings</Link>
+            <Link href="#properties">Browse Listings</Link>
           </Button>
         </div>
       </div>
