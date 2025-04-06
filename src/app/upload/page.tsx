@@ -133,14 +133,14 @@ export default function ManagePropertiesPage() {
   };
 
   // Edit Handler
-  const handleEdit = (property: Property) => {
-    setPropertyData({
-      id: property.$id,
-      title: property.title,
-      description: property.description,
-      price: property.price,
-    });
-  };
+  // const handleEdit = (property: Property) => {
+  //   setPropertyData({
+  //     id: property.$id,
+  //     title: property.title,
+  //     description: property.description,
+  //     price: property.price,
+  //   });
+  // };
 
   return (
     <div className="w-full h-full bg-white p-6 shadow-md rounded-lg mt-20">
