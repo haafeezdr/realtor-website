@@ -181,7 +181,7 @@ export default function ManagePropertiesPage() {
               <p className="text-lg font-bold text-blue-600">N{property.price}</p>
 
               <div className="flex justify-between mt-4">
-                <Button variant="outline" onClick={() => handleEdit(property)}>Edit</Button>
+                {/* <Button variant="outline" onClick={() => handleEdit(property)}>Edit</Button> */}
                 <Button className="bg-red-700" variant="destructive" onClick={() => handleDelete(property.$id, property.imageUrl)}>Delete</Button>
               </div>
             </div>
