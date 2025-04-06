@@ -5,7 +5,7 @@ import Achievements from '@/components/Achievements';
 
 import Footer from '@/components/Footer';
 import VideoSection from '@/components/VideoSection';
-import PropertiesPage from '@/components/PropertiesSection';
+import PropertiesSection from '@/components/PropertiesSection';
 
 export default function Home() {
 
@@ -13,7 +13,7 @@ export default function Home() {
     < >
       <HeroSection />
       <About />
-      <PropertiesPage/>
+      <PropertiesSection/>
       <VideoSection />
       <Achievements />
       <Footer />

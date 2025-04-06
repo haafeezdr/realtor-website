@@ -27,7 +27,7 @@ const client = new Client()
 const databases = new Databases(client);
 const storage = new Storage(client);
 
-export default function PropertiesPage() {
+const PropertiesSection = () => {
   const [properties, setProperties] = useState<Property[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -113,3 +113,5 @@ export default function PropertiesPage() {
     </div>
   );
 }
+
+export default PropertiesSection;
