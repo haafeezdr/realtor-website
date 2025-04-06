@@ -24,9 +24,6 @@ const Footer = () => {
                 <Link href="https://instagram.com" target="_blank">
                   <Instagram className="w-6 h-6 hover:text-pink-400" />
                 </Link>
-                {/* <Link href="https://linkedin.com" target="_blank">
-                  <Linkedin className="w-6 h-6 hover:text-blue-700" />
-                </Link> */}
               </div>
             </ul>
           </div>
