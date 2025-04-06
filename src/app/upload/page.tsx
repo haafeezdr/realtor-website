@@ -151,7 +151,7 @@ export default function ManagePropertiesPage() {
         <textarea name="description" placeholder="Description" value={propertyData.description} onChange={handleChange} className="w-full p-2 border rounded" required />
         <input type="text" name="price" placeholder="Price" value={propertyData.price} onChange={handleChange} className="w-full p-2 border rounded" required />
         <input type="file" onChange={handleFileChange} className="w-full p-2 border rounded" />
-        <Button className="bg-black" type="submit" disabled={loading}>{loading ? "Processing..." : propertyData.id ? "Update Property" : "Upload Property"}</Button>
+        <Button className="bg-black text-white" type="submit" disabled={loading}>{loading ? "Processing..." : propertyData.id ? "Update Property" : "Upload Property"}</Button>
       </form>
 
       <h2 className="text-2xl font-semibold mt-8 mb-4">Manage Properties</h2>
