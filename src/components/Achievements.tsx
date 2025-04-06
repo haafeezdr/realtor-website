@@ -3,7 +3,7 @@ import { Home, Briefcase, Smile } from "lucide-react"; // Importing icons
 
 const Achievements = () => {
   return (
-    <section className="w-full h-[70vh] mx-auto px-4 py-16 text-center bg-gray-100">
+    <section className="w-full  mx-auto px-4 py-16 text-center bg-gray-100">
       <h2 className="text-4xl font-bold mb-10 text-gray-800">Achievements</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">

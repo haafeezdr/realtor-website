@@ -19,16 +19,16 @@ const About = () => {
           <h1 className=' text-4xl lg:text-6xl font-bold'>
             Realtor Bello Properties and Consult.
           </h1>
-          <p className='font-normal text-[#667660]'>
+          <p className='font-normal text-lg text-[#667660]'>
           With over 10 years of experience in real estate, we have helped hundreds
          of families find their dream homes. Our commitment is to provide the best
          service and guidance to our clients.
           </p>
         <Dialog>
             <DialogTrigger className='flex justify-center items-center py-3 text-lg font-semibold  text-white cursor-pointer shadow-md  bg-[#282623] w-52'>Contact Us</DialogTrigger>
-            <DialogContent className=' bg-[#282623]'>
+            <DialogContent className=' bg-white '>
                 <DialogHeader>
-                <DialogTitle>Send Us A Mail Or Contact Us On WhatsApp On 08102729491</DialogTitle>
+                <DialogTitle className='text-center'>Send Us A Mail Or Contact Us On WhatsApp On 08102729491</DialogTitle>
                 <DialogDescription className='p-4 w-full h-full text-center items-center justify-center mt-3'>
                     <form
                     target="_blank"
